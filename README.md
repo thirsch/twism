@@ -79,6 +79,18 @@ If you do a custom map type, provide a URL
 
 	customMap: 'maps/Blank_US_Map.svg'
 	
+Only rect and path elements are considered as clickable regions! Apply an id attribute to them to identify the clicked region. To any child elements that are drawn nearby or over the region you should apply a target attribute and reference the id of the parent element.
+
+Example (example.svg)
+
+	<svg>
+		<g>
+			<path id="my-region-path" d="..." />
+			<text target="my-region-path" ...>My Text</text>
+			<rect target="my-region-path" x=... y=... />
+		</g>
+	</svg>
+	
 Include Antarctica on the world map? (default: false)
 
 	antarctica: true
