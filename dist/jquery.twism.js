@@ -231,7 +231,7 @@
             });
           }
 
-          $("svg path, svg rect", that).css({
+          $("svg path[id], svg rect[id]", that).css({
             fill: settings.color,
             stroke: settings.border,
             strokeWidth: settings.borderWidth
@@ -244,17 +244,17 @@
             });
           }
           $("svg", that).on("click", function(e) {
-            lastclicked = $(e.target).attr("id");
+            lastclicked = $(e.target).attr("id") ? $(e.target).attr("id") : $(e.target).attr("target");
             settings.click(lastclicked);
           });
 
           $("svg", that).on("mouseover", function(e) {
-            lastclicked = $(e.target).attr("id");
+            lastclicked = $(e.target).attr("id") ? $(e.target).attr("id") : $(e.target).attr("target");
             settings.hover(lastclicked);
           });
 
           $("svg", that).on("mouseout", function(e) {
-            lastclicked = $(e.target).attr("id");
+            lastclicked = $(e.target).attr("id") ? $(e.target).attr("id") : $(e.target).attr("target");
             settings.unhover(lastclicked);
           });
 
@@ -264,7 +264,7 @@
                 return o["name"];
               });
             }
-            var country = $(e.target).attr("id");
+            var country = $(e.target).attr("id") ? $(e.target).attr("id") : $(e.target).attr("target");
             if (settings.disableCountries && settings.disableCountries.indexOf(country) == -1) {
               if (ics && icss.indexOf(country) > -1) {
                 for (i in ics) {
@@ -295,7 +295,7 @@
           });
 
           $("svg path, svg text, svg rect", that).on("mouseout", function(e) {
-            var country = $(e.target).attr("id");
+            var country = $(e.target).attr("id") ? $(e.target).attr("id") : $(e.target).attr("target");
             $('path#' + country+', rect#' + country, that).css({
               "fill": settings.color,
               "stroke": settings.border
